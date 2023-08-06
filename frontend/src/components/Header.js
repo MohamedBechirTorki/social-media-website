@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
-export default function Header() {
+export default function Header({ data }) {
   return (
     <div className="header">
       <header className="container">
@@ -23,8 +23,13 @@ export default function Header() {
             <FontAwesomeIcon icon={faPlay} />
           </Link>
         </div>
-        <div className="search">
-          <input type="text" placeholder="Search" />
+        <div className="right">
+          <div className="search">
+            <input type="text" placeholder="Search" />
+          </div>
+          <div className="profile-pic">
+            <img src={data.pic} alt="user profile" />
+          </div>
         </div>
       </header>
     </div>

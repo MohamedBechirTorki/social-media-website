@@ -11,6 +11,7 @@
 }
 .App header .title {
   font-size: 25px;
+  color: white;
 }
 .App header .center {
   display: flex;
@@ -22,12 +23,29 @@
   justify-content: center;
   align-items: center;
   height: 60px;
-  background-color: rgb(41, 41, 41);
 }
 .App header a:hover {
-  border-bottom: 2px solid #1876f2;
+  border-bottom: 4px solid white;
+}
+.App header a.clicked {
+  border-bottom: 4px solid white;
 }
 .App header .center svg {
   color: white;
   font-size: 22px;
+}
+.App header .right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.App header .right .search input {
+  border-radius: 30px;
+  padding: 5px 20px;
+  outline: none;
+  border: none;
+}
+.App header .right .profile-pic img {
+  width: 50px;
 }

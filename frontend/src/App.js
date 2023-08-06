@@ -6,10 +6,14 @@ import VideosPage from "./pages/VideosPage";
 import FriendRequests from "./pages/FriendRequests";
 
 function App() {
+  const data = {
+    name: "Mohamed Bechir Torki",
+    pic: "https://img.freepik.com/icones-gratuites/utilisateur_318-159711.jpg",
+  };
   return (
     <div className="App">
       <Router>
-        <Header />
+        <Header data={data} />
         <Routes>
           <Route path="/" exact Component={HomePage} />
           <Route path="/friend-requests" Component={FriendRequests} />
