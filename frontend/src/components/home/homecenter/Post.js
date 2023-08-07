@@ -6,18 +6,19 @@ import {
   faComment,
   faShare,
 } from "@fortawesome/free-solid-svg-icons";
+import PostComment from "./PostComment";
 
 export default function Post({ post }) {
   return (
     <div className="post">
-      <div className="header">
-        <img src={post.pic} />
+      <div className="post-header">
+        <img src={post.pic} alt="user post this" />
         <h4>{post.name}</h4>
       </div>
-      <div className="main">
+      <div className="post-main">
         <p>{post.content}</p>
       </div>
-      <div className="footer">
+      <div className="post-footer">
         <div className="react">
           <div className="react-counter">
             <span>0</span>
@@ -30,11 +31,16 @@ export default function Post({ post }) {
           </button>
         </div>
         <div className="comment">
-          <FontAwesomeIcon icon={faComment} />
+          <FontAwesomeIcon icon={faComment} /> <span>Comment</span>
         </div>
         <div className="share">
-          <FontAwesomeIcon icon={faShare} />
+          <FontAwesomeIcon icon={faShare} /> <span>Share</span>
         </div>
+      </div>
+      <div className="comments">
+        {post.comments.map((comment) => (
+          <PostComment key={comment.id} comment={comment} />
+        ))}
       </div>
     </div>
   );
