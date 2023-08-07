@@ -1,4 +1,5 @@
-.App .header {
+/* Start header */
+.App .app-header {
   display: flex;
   align-items: center;
   background-color: #1876f2;
@@ -48,4 +49,69 @@
 }
 .App header .right .profile-pic img {
   width: 50px;
+}
+/* Start Home */
+.App main.home {
+  display: flex;
+  justify-content: space-between;
+}
+/* Start  Home left */
+.App main.home .left {
+  width: 20%;
+  padding: 10px;
+}
+.App main.home .left h4 {
+  color: gray;
+}
+.App main.home .left .content {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Start Home center */
+.App main.home .center {
+  width: 40%;
+}
+.App .posts .post {
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+.App .posts .post .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.App .posts .post .header img {
+  width: 40px;
+}
+.App .posts .post .header h4 {
+  font-size: 17px;
+}
+.App .posts .post .main {
+  padding: 10px;
+}
+.App .posts .post .footer {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid rgb(77, 77, 77);
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.App .posts .post .footer .react {
+  display: flex;
+  gap: 10px;
+}
+.App .posts .post .footer .react button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+/* Start Home right */
+.App main.home .right {
+  width: 20%;
 }

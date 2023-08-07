@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 export default function Header({ data }) {
   return (
-    <div className="header">
+    <div className="app-header">
       <header className="container">
         <h1 className="title">Torki Social Media</h1>
         <div className="center">
