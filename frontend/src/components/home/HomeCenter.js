@@ -34,7 +34,7 @@ export default function HomeCenter() {
       id: 3,
       name: "Mohamed Oussama",
       pic: "https://img.freepik.com/icones-gratuites/utilisateur_318-159711.jpg",
-      content: "This is other post",
+      content: "This is another post",
       comments: [],
     },
   ];
