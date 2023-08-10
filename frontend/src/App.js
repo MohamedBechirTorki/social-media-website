@@ -2,8 +2,10 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
 import VideosPage from "./pages/VideosPage";
 import FriendRequests from "./pages/FriendRequests";
+import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
   const data = {
@@ -13,12 +15,15 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Header data={data} />
-        <Routes>
-          <Route path="/" exact Component={HomePage} />
-          <Route path="/friend-requests" Component={FriendRequests} />
-          <Route path="/videos" Component={VideosPage} />
-        </Routes>
+        <AuthProvider>
+          <Header data={data} />
+          <Routes>
+            <Route path="/login" Component={LoginPage} />
+            <Route path="/" exact Component={HomePage} />
+            <Route path="/friend-requests" Component={FriendRequests} />
+            <Route path="/videos" Component={VideosPage} />
+          </Routes>
+        </AuthProvider>
       </Router>
     </div>
   );
