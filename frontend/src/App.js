@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage";
 import VideosPage from "./pages/VideosPage";
 import FriendRequests from "./pages/FriendRequests";
 import { PrivateRoute } from "./utils/PrivateRoute";
+import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
   const data = {
@@ -15,18 +16,26 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Header data={data} />
-        <Routes>
-          <Route
-            element={
-              <PrivateRoute exact path="/" component={HomePage} login={true} />
-            }
-          />
+        <AuthProvider>
+          <Header data={data} />
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={<PrivateRoute component={HomePage} />}
+            />
+            <Route
+              path="/friend-requests"
+              element={<PrivateRoute component={FriendRequests} />}
+            />
+            <Route
+              path="/videos"
+              element={<PrivateRoute component={VideosPage} />}
+            />
 
-          <Route path="/login" Component={LoginPage} />
-          <Route path="/friend-requests" Component={FriendRequests} />
-          <Route path="/videos" Component={VideosPage} />
-        </Routes>
+            <Route path="/login" Component={LoginPage} />
+          </Routes>
+        </AuthProvider>
       </Router>
     </div>
   );

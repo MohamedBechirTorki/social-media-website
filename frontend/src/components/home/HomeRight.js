@@ -22,7 +22,7 @@ export default function HomeRight() {
       <h4>Sponsored</h4>
       <div className="ads">
         {data.map((ad) => (
-          <Ad ad={ad} />
+          <Ad key={ad.id} ad={ad} />
         ))}
       </div>
     </div>
