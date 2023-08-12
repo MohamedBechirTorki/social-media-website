@@ -9,9 +9,10 @@ export const AuthProvider = ({ children }) => {
   const [route, setRoute] = useState("/");
   const [user, setUser] = useState(
     localStorage.getItem("AuthToken")
-      ? jwt_decode(JSON.parse(localStorage.getItem("AuthToken")).access)
+      ? JSON.parse(localStorage.getItem("AuthToken")).access
       : null
   );
+  const [userProfil, setUserProfil] = useState(null);
   const [token, setToken] = useState(
     localStorage.getItem("AuthToken")
       ? JSON.parse(localStorage.getItem("AuthToken"))
@@ -44,6 +45,7 @@ export const AuthProvider = ({ children }) => {
     setRoute: setRoute,
     user: user,
   };
+
   return (
     <AuthContext.Provider value={contextData}>{children}</AuthContext.Provider>
   );
