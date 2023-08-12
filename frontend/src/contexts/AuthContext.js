@@ -7,8 +7,16 @@ export default AuthContext;
 
 export const AuthProvider = ({ children }) => {
   const [route, setRoute] = useState("/");
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
+  const [user, setUser] = useState(
+    localStorage.getItem("AuthToken")
+      ? jwt_decode(JSON.parse(localStorage.getItem("AuthToken")).access)
+      : null
+  );
+  const [token, setToken] = useState(
+    localStorage.getItem("AuthToken")
+      ? JSON.parse(localStorage.getItem("AuthToken"))
+      : null
+  );
   const navigate = useNavigate();
   const LoginUser = async (e) => {
     e.preventDefault();
@@ -25,7 +33,6 @@ export const AuthProvider = ({ children }) => {
       }),
     });
     let data = await response.json();
-    console.log(route);
     setUser(jwt_decode(data.access));
     setToken(data);
     localStorage.setItem("AuthToken", JSON.stringify(data));
