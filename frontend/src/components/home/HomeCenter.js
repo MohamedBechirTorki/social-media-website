@@ -1,5 +1,6 @@
 import React from "react";
 import Post from "./homecenter/Post";
+import CreatePost from "./homecenter/CreatePost";
 
 export default function HomeCenter() {
   const data = [
@@ -40,7 +41,7 @@ export default function HomeCenter() {
   ];
   return (
     <div className="center">
-      <div className="create-poste"></div>
+      <CreatePost />
       <div className="posts">
         {data.map((post) => (
           <Post key={post.id} post={post} />

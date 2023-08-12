@@ -79,6 +79,24 @@
 .App main.home .center {
   width: 40%;
 }
+.App main.home .center .create-post {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.App main.home .center .create-post h5 {
+  text-align: center;
+  margin: 0;
+}
+.App main.home .center .create-post .poster {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+}
+.App main.home .center .create-post .poster img {
+  width: 40px;
+}
 .App .posts .post {
   padding: 10px 0;
   margin-bottom: 20px;
