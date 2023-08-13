@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import jwt_decode from "jwt-decode";
 
 const AuthContext = createContext();
 export default AuthContext;
@@ -31,13 +32,19 @@ export const AuthProvider = ({ children }) => {
     }
   };
   const fetchUserProfile = async (token) => {
-    let response = await fetch("http://127.0.0.1:8000/api/get-user-info/", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + String(token.access),
-      },
-    });
+    console.log(jwt_decode(token.access));
+    let response = await fetch(
+      `http://127.0.0.1:8000/api/get-user-info/${
+        jwt_decode(token.access).username
+      }/`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + String(token.access),
+        },
+      }
+    );
     let data = await response.json();
     if (response.status === 200) {
       console.log(data);

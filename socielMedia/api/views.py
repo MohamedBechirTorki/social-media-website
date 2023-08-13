@@ -8,6 +8,8 @@ from .models import UserProfile
 
 # Create your views here.
 
+
+
 @api_view(["GET"])
 def getRoutes(request) : 
     routes = [
@@ -16,10 +18,8 @@ def getRoutes(request) :
     ]
     return Response(routes)
 
-@permission_classes([IsAuthenticated])
 @api_view(["GET"])
-def getUserInfo(request) :
-    print(request.user)
-    user = UserProfile.objects.get(user__id=request.user.id)
+def getUserInfo(request, username) :
+    user = UserProfile.objects.get(user__username=username)
     serializer = UserSerializer(user, many=False)
     return Response(serializer.data)
