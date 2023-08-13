@@ -16,13 +16,10 @@ def getRoutes(request) :
     ]
     return Response(routes)
 
-@api_view(["GET"])
 @permission_classes([IsAuthenticated])
-
+@api_view(["GET"])
 def getUserInfo(request) :
-    #
-    #user = UserProfile.objects.get(id=request.user["id"])
     print(request.user)
-    user = UserProfile.objects.get(id=1)
+    user = UserProfile.objects.get(user__id=request.user.id)
     serializer = UserSerializer(user, many=False)
     return Response(serializer.data)
