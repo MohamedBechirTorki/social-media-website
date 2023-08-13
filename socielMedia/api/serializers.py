@@ -8,21 +8,24 @@ class InitUserSerializer(ModelSerializer) :
         model = User
         fields = ["username"]
 
-class PostSerializer(ModelSerializer):
-    class Meta:
-        model = Post
-        fields = '__all__'
+
 
 class UserSerializer(ModelSerializer) :
-    posts = SerializerMethodField()
+    #posts = SerializerMethodField()
     user = SerializerMethodField()
     class Meta :
         model = UserProfile
-        fields = ['user', 'profile_pic', 'birth_date', 'posts']
+        fields = ['user', 'profile_pic', 'birth_date']
 
-    def get_posts(self, obj):
-        posts = obj.post_set.all()  
-        return PostSerializer(posts, many=True).data
     def get_user(self, obj):
         user = obj.user
         return InitUserSerializer(user, many=False).data
+    
+class PostSerializer(ModelSerializer):
+    poster = SerializerMethodField()
+    class Meta:
+        model = Post
+        fields = ['poster', 'content', 'image', 'comments', 'likes', 'unlikes']
+    def get_poster(self, obj) :
+        userP = UserProfile.objects.get(user__username =  obj.poster)
+        return UserSerializer(userP).data 

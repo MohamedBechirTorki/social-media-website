@@ -9,6 +9,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import PostComment from "./PostComment";
 
+const picUrl =
+  "https://img.freepik.com/icones-gratuites/utilisateur_318-159711.jpg";
 export default function Post({ post }) {
   const [visibleComment, setVisibileComment] = useState(
     post.comments[0] ? [post.comments[0]] : []
@@ -19,11 +21,15 @@ export default function Post({ post }) {
   useEffect(() => {
     typeCommentRef.current.focus();
   }, [typeCommentDisplay, typeCommentRef]);
+  console.log(post);
   return (
     <div className="post">
       <div className="post-header">
-        <img src={post.pic} alt="user post this" />
-        <h4>{post.name}</h4>
+        <img
+          src={post.poster.image ? post.poster.image : picUrl}
+          alt="user post this"
+        />
+        <h4>{post.poster.user.username}</h4>
       </div>
       <div className="post-main">
         <p>{post.content}</p>
@@ -31,7 +37,7 @@ export default function Post({ post }) {
       <div className="post-footer">
         <div className="react">
           <div className="react-counter">
-            <span>0</span>
+            <span>{post.likes.length - post.unlikes.length}</span>
           </div>
           <button>
             <FontAwesomeIcon icon={faChevronUp} />
