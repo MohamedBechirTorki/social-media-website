@@ -20,10 +20,11 @@ post_save.connect(create_user_profile, sender=User)
 
 class Post(models.Model) :
     poster = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-    image = models.ImageField(null=True, blank=True)
     content = models.TextField(null=True, blank=True)
-    likes = models.ManyToManyField(User, related_name='liked_posts', blank=True)
-    unlikes = models.ManyToManyField(User, related_name='unliked_posts', blank=True)
+    image = models.ImageField(null=True, blank=True)
+    comments = models.ManyToManyField(UserProfile, related_name='comment_post', blank=True)
+    likes = models.ManyToManyField(UserProfile, related_name='liked_post', blank=True)
+    unlikes = models.ManyToManyField(UserProfile, related_name='unliked_post', blank=True)
 
     def __str__(self) :
         return "Post: " + self.id + " by " + self.poster.username[:10]

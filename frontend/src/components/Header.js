@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHouse,
@@ -6,8 +6,12 @@ import {
   faPlay,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import AuthContext from "../contexts/AuthContext";
+const picUrl =
+  "https://img.freepik.com/icones-gratuites/utilisateur_318-159711.jpg";
 
-export default function Header({ data }) {
+export default function Header() {
+  const { userProfil } = useContext(AuthContext);
   return (
     <div className="app-header">
       <header className="container">
@@ -28,7 +32,10 @@ export default function Header({ data }) {
             <input type="text" placeholder="Search" />
           </div>
           <div className="profile-pic">
-            <img src={data.pic} alt="user profile" />
+            <img
+              src={userProfil && userProfil.image ? userProfil.image : picUrl}
+              alt="user profile"
+            />
           </div>
         </div>
       </header>

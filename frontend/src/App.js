@@ -10,15 +10,11 @@ import { PrivateRoute } from "./utils/PrivateRoute";
 import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
-  const data = {
-    name: "Mohamed Bechir Torki",
-    pic: "https://img.freepik.com/icones-gratuites/utilisateur_318-159711.jpg",
-  };
   return (
     <div className="App">
       <Router>
         <AuthProvider>
-          <Header data={data} />
+          <Header />
           <Routes>
             <Route
               exact

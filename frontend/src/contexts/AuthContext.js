@@ -32,7 +32,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
   const fetchUserProfile = async (token) => {
-    console.log(jwt_decode(token.access));
     let response = await fetch(
       `http://127.0.0.1:8000/api/get-user-info/${
         jwt_decode(token.access).username
@@ -47,7 +46,6 @@ export const AuthProvider = ({ children }) => {
     );
     let data = await response.json();
     if (response.status === 200) {
-      console.log(data);
       setUserProfil(data);
     } else {
       console.error("Getting user info error !");
@@ -76,7 +74,6 @@ export const AuthProvider = ({ children }) => {
     });
     let data = await response.json();
     setToken(data);
-    console.log(data);
     localStorage.setItem("AuthToken", JSON.stringify(data));
     fetchUserProfile(data);
   };
