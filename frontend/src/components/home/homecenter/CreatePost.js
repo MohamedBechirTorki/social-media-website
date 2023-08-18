@@ -15,7 +15,7 @@ export default function CreatePost() {
       <h5>Create post</h5>
       <div className="poster">
         <img
-          src={userProfil.profil_pic}
+          src={userProfil.profile_pic}
           alt="your profile"
         />
         <span>{userProfil ? userProfil.user.username : "username"}</span>

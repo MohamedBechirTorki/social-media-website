@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
   );
   const LoginUser = async (e) => {
     e.preventDefault();
-    let response = await fetch("http://127.0.0.1:8000/api/token/", {
+    let response = await fetch("/api/token/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
   };
   const fetchUserProfile = async (token) => {
     let response = await fetch(
-      `http://127.0.0.1:8000/api/get-user-info/${
+      `/api/get-user-info/${
         jwt_decode(token.access).username
       }/`,
       {
@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const updateToken = async () => {
-    let response = await fetch("http://127.0.0.1:8000/api/token/refresh/", {
+    let response = await fetch("/api/token/refresh/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("AuthToken", JSON.stringify(data));
   };
   const initializeUser = async () => {
-    let response = await fetch("http://127.0.0.1:8000/api/token/refresh/", {
+    let response = await fetch("/api/token/refresh/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

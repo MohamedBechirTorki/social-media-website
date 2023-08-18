@@ -5,11 +5,15 @@ from django.dispatch import receiver
 # Create your models here.
 
 class UserProfile(models.Model) :
-    pic_url = "https://img.freepik.com/icones-gratuites/utilisateur_318-159711.jpg"
+    pic_url = "/images/user_default_pic.jpg"
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    profile_pic = models.ImageField(default=pic_url)
-    birth_date = models.DateField(null=True)
-    
+    profile_pic = models.ImageField(upload_to='profile_pics', default='/images/profile_pics/user_default_pic.jpg', null=True, blank=True)
+     
+    birth_date = models.DateField(null=True, blank=True)
+    def profile_pic_url(self):
+        if self.profile_pic:
+            return self.profile_pic.url
+        return "/images/profile_pics/user_default_pic.jpg"
     def __str__(self) :
         return self.user.username[:50]
 

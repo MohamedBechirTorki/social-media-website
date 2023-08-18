@@ -31,7 +31,7 @@ export default function Post({ post }) {
     <div className="post">
       <div className="post-header">
         <img
-          src={post.poster.image}
+          src={post.poster.profile_pic}
           alt="user post this"
         />
         <h4>{post.poster.user.username}</h4>

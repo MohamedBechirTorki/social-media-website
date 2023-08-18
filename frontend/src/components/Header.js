@@ -33,7 +33,7 @@ export default function Header() {
           </div>
           <div className="profile-pic">
             <img
-              src={userProfil && userProfil.image ? userProfil.image : picUrl}
+              src={userProfil && userProfil.profile_pic ? userProfil.profile_pic : picUrl}
               alt="user profile"
             />
           </div>

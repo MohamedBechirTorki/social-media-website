@@ -10,7 +10,7 @@ export const HomeProvider = ({ children }) => {
 
   const createPost = async (e) => {
     e.preventDefault();
-    fetch("http://127.0.0.1:8000/api/create-post/", {
+    fetch("/api/create-post/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -24,7 +24,7 @@ export const HomeProvider = ({ children }) => {
   };
 
   const fetchPosts = async () => {
-    let response = await fetch("http://127.0.0.1:8000/api/get-posts/", {
+    let response = await fetch("/api/get-posts/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
