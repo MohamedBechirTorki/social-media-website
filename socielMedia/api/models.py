@@ -5,8 +5,9 @@ from django.dispatch import receiver
 # Create your models here.
 
 class UserProfile(models.Model) :
+    pic_url = "https://img.freepik.com/icones-gratuites/utilisateur_318-159711.jpg"
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    profile_pic = models.ImageField(null=True, blank=True)
+    profile_pic = models.ImageField(default=pic_url)
     birth_date = models.DateField(null=True)
     
     def __str__(self) :
@@ -22,7 +23,6 @@ class Post(models.Model) :
     poster = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     content = models.TextField(null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
-    comments = models.ManyToManyField(UserProfile, related_name='comment_post', blank=True)
     likes = models.ManyToManyField(UserProfile, related_name='liked_post', blank=True)
     unlikes = models.ManyToManyField(UserProfile, related_name='unliked_post', blank=True)
 

@@ -5,12 +5,17 @@ import HomeContext from "../../../contexts/HomeContext";
 export default function CreatePost() {
   const { userProfil } = useContext(AuthContext);
   const { createPost } = useContext(HomeContext);
+  console.log(userProfil)
+  if (!userProfil) {
+    return <h3>Loading ...</h3>
+  }
+
   return (
     <form className="create-post" onSubmit={(e) => createPost(e)}>
       <h5>Create post</h5>
       <div className="poster">
         <img
-          src="https://img.freepik.com/icones-gratuites/utilisateur_318-159711.jpg"
+          src={userProfil.profil_pic}
           alt="your profile"
         />
         <span>{userProfil ? userProfil.user.username : "username"}</span>
@@ -19,5 +24,5 @@ export default function CreatePost() {
       <input name="image" type="file" />
       <button>Post</button>
     </form>
-  );
+  ); 
 }

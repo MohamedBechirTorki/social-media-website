@@ -9,8 +9,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import PostComment from "./PostComment";
 
-const picUrl =
-  "https://img.freepik.com/icones-gratuites/utilisateur_318-159711.jpg";
+
+  
 export default function Post({ post }) {
   const [visibleComment, setVisibileComment] = useState(
     post.comments[0] ? [post.comments[0]] : []
@@ -21,9 +21,9 @@ export default function Post({ post }) {
   useEffect(() => {
     typeCommentRef.current.focus();
   }, [typeCommentDisplay, typeCommentRef]);
+
   const submitComment = async(e) => {
     console.log(e.target.comment.value)
-    console.log(post)
     post.comments.push(e.target.comment.value)
     e.preventDefault()
   }
@@ -31,7 +31,7 @@ export default function Post({ post }) {
     <div className="post">
       <div className="post-header">
         <img
-          src={post.poster.image ? post.poster.image : picUrl}
+          src={post.poster.image}
           alt="user post this"
         />
         <h4>{post.poster.user.username}</h4>
