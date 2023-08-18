@@ -21,7 +21,12 @@ export default function Post({ post }) {
   useEffect(() => {
     typeCommentRef.current.focus();
   }, [typeCommentDisplay, typeCommentRef]);
-  console.log(post);
+  const submitComment = async(e) => {
+    console.log(e.target.comment.value)
+    console.log(post)
+    post.comments.push(e.target.comment.value)
+    e.preventDefault()
+  }
   return (
     <div className="post">
       <div className="post-header">
@@ -54,12 +59,13 @@ export default function Post({ post }) {
         </div>
       </div>
       <div className="type-comment" style={{ display: typeCommentDisplay }}>
-        <form>
+        <form onSubmit={(e) => submitComment(e)}>
           <input
             ref={typeCommentRef}
             type="text"
             placeholder="Type a comment"
             autoFocus
+            name="comment"
           />
           <button>
             <FontAwesomeIcon icon={faPaperPlane} />

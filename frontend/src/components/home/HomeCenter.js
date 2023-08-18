@@ -9,8 +9,8 @@ export default function HomeCenter() {
     <div className="center">
       <CreatePost />
       <div className="posts">
-        {posts.map((post) => (
-          <Post key={post.id} post={post} />
+        {posts.map((post, idf) => (
+          <Post key={idf} post={post} />
         ))}
       </div>
     </div>

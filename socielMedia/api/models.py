@@ -27,5 +27,11 @@ class Post(models.Model) :
     unlikes = models.ManyToManyField(UserProfile, related_name='unliked_post', blank=True)
 
     def __str__(self) :
-        return "Post: " + self.id + " by " + self.poster.username[:10]
+        return f"Post: {self.id} user: {self.poster.user.username[:10]}"
 
+class Comment(models.Model) :
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    content = models.TextField()
+    def __str__(self) :
+        return f"Comment: {self.id} user: {self.user.user.username[:10]} post: {self.post.id}"
