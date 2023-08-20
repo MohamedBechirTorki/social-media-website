@@ -15,6 +15,8 @@ export default function Post({ post }) {
     post.comments[0] ? [post.comments[0]] : []
   );
   const [typeCommentDisplay, setTypeCommentDisplay] = useState("none");
+  const [upClick, setUpClick] = useState("");
+  const [downClick, setDownClick] = useState("");
   const typeCommentRef = createRef();
   const { userProfil, token } = useContext(AuthContext);
   useEffect(() => {
@@ -38,6 +40,34 @@ export default function Post({ post }) {
     });
     e.target.comment.value = "";
   };
+
+  const handleUpClick = () => {
+    if (upClick === "clicked") {
+      setUpClick("");
+      post.likes = post.likes.slice(0, post.likes.length - 1);
+    } else {
+      setUpClick("clicked");
+      post.likes.push({});
+      if (downClick === "clicked") {
+        setDownClick("");
+        post.unlikes = post.unlikes.slice(0, post.unlikes.length - 1);
+      }
+    }
+  };
+  const handleDownClick = () => {
+    if (downClick === "clicked") {
+      setDownClick("");
+      post.unlikes = post.unlikes.slice(0, post.unlikes.length - 1);
+    } else {
+      setDownClick("clicked");
+      post.unlikes.push({});
+      if (upClick === "clicked") {
+        setUpClick("");
+        post.likes = post.likes.slice(0, post.likes.length - 1);
+      }
+    }
+  };
+
   return (
     <div className="post">
       <div className="post-header">
@@ -52,10 +82,10 @@ export default function Post({ post }) {
           <div className="react-counter">
             <span>{post.likes.length - post.unlikes.length}</span>
           </div>
-          <button>
+          <button className={upClick} onClick={() => handleUpClick()}>
             <FontAwesomeIcon icon={faChevronUp} />
           </button>
-          <button>
+          <button className={downClick} onClick={() => handleDownClick()}>
             <FontAwesomeIcon icon={faChevronDown} />
           </button>
         </div>

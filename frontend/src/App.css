@@ -136,6 +136,10 @@
   outline: none;
   background-color: transparent;
 }
+.App .posts .post .comment .react button.clicked,
+.App .posts .post .post-footer .react button.clicked {
+  color: #1876f2;
+}
 .App .posts .post .post-footer .share {
   display: flex;
   align-items: center;
