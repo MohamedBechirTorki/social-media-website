@@ -26,6 +26,7 @@ urlpatterns = [
     path("get-user-info/<str:username>/", views.getUserInfo, name="user-info"),
     path("get-posts/", views.getPosts, name="get-posts"),
     path("create-post/", views.createPost, name="create-post"),
+    path("add-comment/", views.addComment, name="add-comment"),
 ]
 
 

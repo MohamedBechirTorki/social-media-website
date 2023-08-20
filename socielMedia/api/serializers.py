@@ -35,7 +35,7 @@ class PostSerializer(ModelSerializer):
     comments = SerializerMethodField()
     class Meta:
         model = Post
-        fields = ['poster', 'content', 'image', 'comments', 'likes', 'unlikes']
+        fields = ['id','poster', 'content', 'image', 'comments', 'likes', 'unlikes']
     def get_poster(self, obj) :
         userP = UserProfile.objects.get(user__username =  obj.poster)
         return UserSerializer(userP).data 

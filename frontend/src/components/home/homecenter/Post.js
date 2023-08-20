@@ -16,7 +16,7 @@ export default function Post({ post }) {
   );
   const [typeCommentDisplay, setTypeCommentDisplay] = useState("none");
   const typeCommentRef = createRef();
-  const { userProfil } = useContext(AuthContext);
+  const { userProfil, token } = useContext(AuthContext);
   useEffect(() => {
     typeCommentRef.current.focus();
   }, [typeCommentDisplay, typeCommentRef]);
@@ -28,6 +28,14 @@ export default function Post({ post }) {
       { user: userProfil, content: e.target.comment.value },
     ]);
     post.comments.push({ user: userProfil, content: e.target.comment.value });
+    fetch("/api/add-comment/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token.access,
+      },
+      body: JSON.stringify({ post: post.id, content: e.target.comment.value }),
+    });
     e.target.comment.value = "";
   };
   return (

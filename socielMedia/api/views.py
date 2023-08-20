@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from .serializers import UserSerializer, PostSerializer
-from .models import UserProfile, Post
+from .models import UserProfile, Post, Comment
 
 # Create your views here.
 
@@ -40,3 +40,15 @@ def createPost(request) :
     post.save()
     return Response("New post was created")
    
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def addComment(request) :
+    try :
+        print(request.data)
+        user = UserProfile.objects.get(user__username=request.user)
+        data = request.data
+        post = Post.objects.get(id=data["post"])
+        Comment.objects.create(user=user, post=post, content=data["content"])
+        return Response("Adding comment successfully")
+    except :
+        return Response("Adding comment error")
