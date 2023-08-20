@@ -33,6 +33,8 @@ class CommentSerializer(ModelSerializer) :
 class PostSerializer(ModelSerializer):
     poster = SerializerMethodField()
     comments = SerializerMethodField()
+    likes = UserSerializer(read_only=True, many=True)
+    unlikes = UserSerializer(read_only=True, many=True)
     class Meta:
         model = Post
         fields = ['id','poster', 'content', 'image', 'comments', 'likes', 'unlikes']

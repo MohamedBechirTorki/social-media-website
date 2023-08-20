@@ -22,7 +22,7 @@ export default function Post({ post }) {
   useEffect(() => {
     typeCommentRef.current.focus();
   }, [typeCommentDisplay, typeCommentRef]);
-
+  console.log(post);
   const submitComment = async (e) => {
     e.preventDefault();
     setVisibileComment([
@@ -47,6 +47,14 @@ export default function Post({ post }) {
       post.likes = post.likes.slice(0, post.likes.length - 1);
     } else {
       setUpClick("clicked");
+      fetch("/api/add-like/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token.access,
+        },
+        body: JSON.stringify({ post: post.id }),
+      });
       post.likes.push({});
       if (downClick === "clicked") {
         setDownClick("");
@@ -60,6 +68,14 @@ export default function Post({ post }) {
       post.unlikes = post.unlikes.slice(0, post.unlikes.length - 1);
     } else {
       setDownClick("clicked");
+      fetch("/api/add-unlike/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token.access,
+        },
+        body: JSON.stringify({ post: post.id }),
+      });
       post.unlikes.push({});
       if (upClick === "clicked") {
         setUpClick("");

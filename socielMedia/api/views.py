@@ -44,7 +44,6 @@ def createPost(request) :
 @permission_classes([IsAuthenticated])
 def addComment(request) :
     try :
-        print(request.data)
         user = UserProfile.objects.get(user__username=request.user)
         data = request.data
         post = Post.objects.get(id=data["post"])
@@ -52,3 +51,23 @@ def addComment(request) :
         return Response("Adding comment successfully")
     except :
         return Response("Adding comment error")
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def addLike(request) :
+    post = Post.objects.get(id=request.data["post"])
+    user = UserProfile.objects.get(user__username=request.user)    
+    post.likes.add(user)
+    post.unlikes.remove(user)
+    post.save()
+    return Response(PostSerializer(post, many=False).data)
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def addUnlike(request) :
+    post = Post.objects.get(id=request.data["post"])
+    user = UserProfile.objects.get(user__username=request.user)    
+    post.unlikes.add(user)
+    post.likes.remove(user)
+    post.save()
+    return Response(PostSerializer(post, many=False).data)

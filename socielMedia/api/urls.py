@@ -27,6 +27,8 @@ urlpatterns = [
     path("get-posts/", views.getPosts, name="get-posts"),
     path("create-post/", views.createPost, name="create-post"),
     path("add-comment/", views.addComment, name="add-comment"),
+    path("add-like/", views.addLike, name="add-like"),
+    path("add-unlike/", views.addUnlike, name="add-unlike"),
 ]
 
 
