@@ -63,7 +63,7 @@ export default function Post({ post }) {
     }
   };
   const handleDownClick = () => {
-    if (downClick === "clickedd") {
+    if (downClick === "clicked") {
       setDownClick("");
       post.unlikes = post.unlikes.slice(0, post.unlikes.length - 1);
     } else {
