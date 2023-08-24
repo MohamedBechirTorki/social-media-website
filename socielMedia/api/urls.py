@@ -29,6 +29,7 @@ urlpatterns = [
     path("add-comment/", views.addComment, name="add-comment"),
     path("add-like/", views.addLike, name="add-like"),
     path("add-unlike/", views.addUnlike, name="add-unlike"),
+    path("remove-react/", views.removeReact, name="remove-react"),
 ]
 
 

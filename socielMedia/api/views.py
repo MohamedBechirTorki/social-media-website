@@ -71,3 +71,13 @@ def addUnlike(request) :
     post.likes.remove(user)
     post.save()
     return Response(PostSerializer(post, many=False).data)
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def removeReact(request) :
+    post = Post.objects.get(id=request.data["post"])
+    user = UserProfile.objects.get(user__username=request.user)    
+    post.unlikes.remove(user)
+    post.likes.remove(user)
+    post.save()
+    return Response(PostSerializer(post, many=False).data)

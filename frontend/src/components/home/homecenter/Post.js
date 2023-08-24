@@ -58,6 +58,14 @@ export default function Post({ post }) {
   const handleUpClick = () => {
     if (upClick === "clicked") {
       setUpClick("");
+      fetch("/api/remove-react/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token.access,
+        },
+        body: JSON.stringify({ post: post.id }),
+      });
       post.likes = post.likes.slice(0, post.likes.length - 1);
     } else {
       setUpClick("clicked");
