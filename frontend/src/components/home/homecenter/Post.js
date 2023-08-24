@@ -11,18 +11,32 @@ import PostComment from "./PostComment";
 import AuthContext from "../../../contexts/AuthContext";
 
 export default function Post({ post }) {
+  const isInclude = (array, element) => {
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].user.username === element.user.username) {
+        return "clicked";
+      }
+    }
+    return "";
+  };
+
   const [visibleComment, setVisibileComment] = useState(
     post.comments[0] ? [post.comments[0]] : []
   );
   const [typeCommentDisplay, setTypeCommentDisplay] = useState("none");
-  const [upClick, setUpClick] = useState("");
-  const [downClick, setDownClick] = useState("");
+
   const typeCommentRef = createRef();
   const { userProfil, token } = useContext(AuthContext);
+  const [upClick, setUpClick] = useState(() =>
+    isInclude(post.likes, userProfil)
+  );
+  const [downClick, setDownClick] = useState(() =>
+    isInclude(post.unlikes, userProfil)
+  );
+
   useEffect(() => {
     typeCommentRef.current.focus();
   }, [typeCommentDisplay, typeCommentRef]);
-  console.log(post);
   const submitComment = async (e) => {
     e.preventDefault();
     setVisibileComment([
