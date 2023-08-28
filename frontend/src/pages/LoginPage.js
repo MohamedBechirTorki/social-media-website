@@ -8,9 +8,18 @@ export default function LoginPage() {
       <div className="login-bg"></div>
       <div className="login-form">
         <form onSubmit={(e) => LoginUser(e)}>
-          <input type="text" name="username" placeholder="username" />
-          <input type="password" name="password" placeholder="password" />
-          <button>Submit</button>
+          <div>
+            <h3>Login account</h3>
+            <p></p>
+          </div>
+          <input type="text" name="username" placeholder="Username" required />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+          <button>Login</button>
         </form>
       </div>
     </div>

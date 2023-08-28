@@ -3,6 +3,7 @@
 }
 
 :root {
+  --blue-1: #097ff4;
   --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -44,10 +45,35 @@ body {
 .login-form form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 80px;
-  gap: 20px;
+  gap: 40px;
   background-color: white;
   height: 100%;
+}
+.login-form form h3 {
+  color: var(--blue-1);
+}
+.login-form form input {
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-left: 4px solid var(--blue-1);
+  background-color: #f7f7f7;
+  width: 100%;
+}
+.login-form form input:placeholder-shown {
+  color: #a3a3a3;
+}
+.login-form form button {
+  color: white;
+  background-color: var(--blue-1);
+  font-size: 22px;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 50px;
 }
 
 /* Start header */
