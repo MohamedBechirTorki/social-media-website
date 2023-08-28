@@ -5,14 +5,14 @@ export default function LoginPage() {
   const { LoginUser } = useContext(AuthContext);
   return (
     <div className="login">
-      <div>
-        <img src="images/login-bg.avif" />
+      <div className="login-bg"></div>
+      <div className="login-form">
+        <form onSubmit={(e) => LoginUser(e)}>
+          <input type="text" name="username" placeholder="username" />
+          <input type="password" name="password" placeholder="password" />
+          <button>Submit</button>
+        </form>
       </div>
-      <form onSubmit={(e) => LoginUser(e)} className="login-form">
-        <input type="text" name="username" placeholder="username" />
-        <input type="password" name="password" placeholder="password" />
-        <button>Submit</button>
-      </form>
     </div>
   );
 }
