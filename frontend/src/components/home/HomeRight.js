@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import Ad from "./homeright/Ad";
+import AuthContext from "../../contexts/AuthContext";
 
 export default function HomeRight() {
+  const { setUserProfil, setToken } = useContext(AuthContext);
+  const logoutUser = () => {
+    setUserProfil("");
+    setToken("");
+    localStorage.clear();
+  };
+
   const data = [
     {
       id: 1,
@@ -25,6 +33,7 @@ export default function HomeRight() {
           <Ad key={ad.id} ad={ad} />
         ))}
       </div>
+      <button onClick={() => logoutUser()}>Logout</button>
     </div>
   );
 }

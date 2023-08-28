@@ -27,11 +27,11 @@ export default function Post({ post }) {
 
   const typeCommentRef = createRef();
   const { userProfil, token } = useContext(AuthContext);
-  const [upClick, setUpClick] = useState(() =>
-    isInclude(post.likes, userProfil)
+  const [upClick, setUpClick] = useState(
+    () => userProfil && isInclude(post.likes, userProfil)
   );
-  const [downClick, setDownClick] = useState(() =>
-    isInclude(post.unlikes, userProfil)
+  const [downClick, setDownClick] = useState(
+    () => userProfil && isInclude(post.unlikes, userProfil)
   );
 
   useEffect(() => {
@@ -87,6 +87,14 @@ export default function Post({ post }) {
   const handleDownClick = () => {
     if (downClick === "clicked") {
       setDownClick("");
+      fetch("/api/remove-react/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token.access,
+        },
+        body: JSON.stringify({ post: post.id }),
+      });
       post.unlikes = post.unlikes.slice(0, post.unlikes.length - 1);
     } else {
       setDownClick("clicked");

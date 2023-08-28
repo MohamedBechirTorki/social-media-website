@@ -33,9 +33,7 @@ export const AuthProvider = ({ children }) => {
   };
   const fetchUserProfile = async (token) => {
     let response = await fetch(
-      `/api/get-user-info/${
-        jwt_decode(token.access).username
-      }/`,
+      `/api/get-user-info/${jwt_decode(token.access).username}/`,
       {
         method: "GET",
         headers: {
@@ -77,8 +75,9 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("AuthToken", JSON.stringify(data));
     fetchUserProfile(data);
   };
+
   useEffect(() => {
-    token && initializeUser();
+    initializeUser();
     const inter = setInterval(() => updateToken(), 270000);
     return () => clearInterval(inter);
   }, []);
@@ -87,6 +86,8 @@ export const AuthProvider = ({ children }) => {
     token: token,
     LoginUser: LoginUser,
     userProfil: userProfil,
+    setUserProfil: setUserProfil,
+    setToken: setToken,
   };
 
   return (

@@ -8,11 +8,15 @@ export default function HomeCenter() {
   return (
     <div className="center">
       <CreatePost />
-      <div className="posts">
-        {posts.map((post, idf) => (
-          <Post key={idf} post={post} />
-        ))}
-      </div>
+      {posts ? (
+        <div className="posts">
+          {posts.map((post, idf) => (
+            <Post key={idf} post={post} />
+          ))}
+        </div>
+      ) : (
+        <h2>Loading posts</h2>
+      )}
     </div>
   );
 }
