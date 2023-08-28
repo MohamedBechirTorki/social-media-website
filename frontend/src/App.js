@@ -1,6 +1,5 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import VideosPage from "./pages/VideosPage";
@@ -14,7 +13,6 @@ function App() {
     <div className="App">
       <Router>
         <AuthProvider>
-          <Header />
           <Routes>
             <Route
               exact
