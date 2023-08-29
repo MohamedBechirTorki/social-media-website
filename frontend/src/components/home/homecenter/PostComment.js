@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 export default function PostComment({ comment }) {
-  console.log(comment)
   return (
     <div className="comment">
       <div className="comment-left">

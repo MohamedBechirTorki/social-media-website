@@ -26,6 +26,7 @@ export const AuthProvider = ({ children }) => {
     if (response.status === 200) {
       let data = await response.json();
       setToken(data);
+      fetchUserProfile(data);
       localStorage.setItem("AuthToken", JSON.stringify(data));
     } else {
       console.error("Login error");
@@ -61,23 +62,10 @@ export const AuthProvider = ({ children }) => {
     let data = await response.json();
     setToken(data);
     localStorage.setItem("AuthToken", JSON.stringify(data));
+    fetchUserProfile(token);
   };
-  const initializeUser = async () => {
-    let response = await fetch("/api/token/refresh/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ refresh: token.refresh }),
-    });
-    let data = await response.json();
-    setToken(data);
-    localStorage.setItem("AuthToken", JSON.stringify(data));
-    fetchUserProfile(data);
-  };
-
   useEffect(() => {
-    initializeUser();
+    updateToken();
     const inter = setInterval(() => updateToken(), 270000);
     return () => clearInterval(inter);
   }, []);
