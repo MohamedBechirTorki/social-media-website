@@ -81,3 +81,10 @@ def removeReact(request) :
     post.likes.remove(user)
     post.save()
     return Response(PostSerializer(post, many=False).data)
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def peoplesYouMayKnow(request) :
+    users = UserProfile.objects.all()
+    serializer = UserSerializer(users, many=True)
+    return Response(serializer.data)
