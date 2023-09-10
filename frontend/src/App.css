@@ -292,3 +292,18 @@ body {
 .App main.home .right .ads .ad .content img {
   width: 100px;
 }
+.App .request {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.App .request .person {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.App .request .person .image img {
+  width: 50px;
+}
